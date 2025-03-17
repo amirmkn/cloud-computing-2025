@@ -33,7 +33,8 @@ jobs:
 
       # 5️⃣ Run basic test (Ensure container is running)
       - name: Test API
-        run: curl -X POST -H "Content-Type: application/json" -d '{"text": "This movie was fantastic!"}' http://localhost:5000/infer || exit 1
+        run: |
+          curl -X POST -H "Content-Type: application/json" -d '{"text": "This movie was fantastic!"}' http://localhost:5000/infer || exit 1
 
       # 6️⃣ Push image to Docker Hub (if tests pass)
       - name: Push Docker Image

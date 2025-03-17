@@ -25,7 +25,7 @@ jobs:
       - name: Build Docker Image
         run: docker build -t ${{ secrets.DOCKER_USERNAME }}/llm-inference-image -f homeworks/one/Dockerfile .
 
-      # 4️⃣ Run container for testing
+      # 4️⃣ Run container
       - name: Run Container for Tests
         run: |
           docker run -d --name llm-inference-container -p 5000:5000 ${{ secrets.DOCKER_USERNAME }}/llm-inference-image
@@ -39,3 +39,13 @@ jobs:
       # 6️⃣ Push image to Docker Hub (if tests pass)
       - name: Push Docker Image
         run: docker push ${{ secrets.DOCKER_USERNAME }}/llm-inference-image
+      
+      # 7️⃣ Monitor container stats
+      - name: Monitor Docker container stats
+        run: |
+          docker stats llm-inference-container --no-stream
+      
+      # 8️⃣ Run latency test
+      - name: Run latency test script
+        run: |
+          sh ./latency_test.sh 127.0.0.1 5000

@@ -48,4 +48,4 @@ jobs:
       # 8️⃣ Run latency test
       - name: Run latency test script
         run: |
-          sh ./homeworks/app/latency_test.sh 127.0.0.1 5000
+          sh homeworks/one/latency_test.sh 127.0.0.1 5000

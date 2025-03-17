@@ -23,7 +23,7 @@ jobs:
 
       # 3️⃣ Build the Docker image
       - name: Build Docker Image
-        run: docker build -t ${{ secrets.DOCKER_USERNAME }}/llm-inference-image .
+        run: docker build -t ${{ secrets.DOCKER_USERNAME }}/llm-inference-image -f homeworks/one/Dockerfile .
 
       # 4️⃣ Run container for testing
       - name: Run Container for Tests

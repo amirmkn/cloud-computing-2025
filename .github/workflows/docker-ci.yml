@@ -43,7 +43,8 @@ jobs:
       # 7️⃣ Monitor container stats
       - name: Monitor Docker container stats
         run: |
-          docker stats llm-inference-container --no-stream
+          docker stats llm-inference-container 
+        #--no-stream
       
       # 8️⃣ Run latency test
       - name: Run latency test script

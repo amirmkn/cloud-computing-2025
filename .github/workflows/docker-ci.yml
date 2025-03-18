@@ -52,7 +52,8 @@ jobs:
           docker stats llm-inference-container --no-stream >> docker-stats-no-stream.txt
           
           # Start a 10-second tracking process
-          docker stats --format "{{.Container}},{{.CPUPerc}},{{.MemUsage}},{{.NetIO}}" >> docker-stats.txt &
+          echo "Container,CPU%,Memory%,Net I/O" > docker-stats.csv
+          docker stats --format "{{.Container}},{{.CPUPerc}},{{.MemUsage}},{{.NetIO}}" >> docker-stats.csv &
           STATS_PID=$!  # Capture the process ID
           sleep 10  
           kill $STATS_PID  # Stop the tracking process
@@ -64,4 +65,4 @@ jobs:
             name: docker-stats
             path: |
               docker-stats-no-stream.txt
-              docker-stats.txt
+              docker-stats.csv

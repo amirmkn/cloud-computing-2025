@@ -49,5 +49,4 @@ jobs:
       - name: Monitor Docker container stats
         run: |
           timeout 10s docker stats --format "{{.Container}},{{.CPUPerc}},{{.MemUsage}},{{.NetIO}}" >> docker-stats.txt
-          docker stats --no-stream >> docker-stats_no_stream.txt
         #--no-stream

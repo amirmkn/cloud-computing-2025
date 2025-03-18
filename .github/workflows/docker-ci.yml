@@ -56,3 +56,12 @@ jobs:
           STATS_PID=$!  # Capture the process ID
           sleep 10  
           kill $STATS_PID  # Stop the tracking process
+      
+      # 9️⃣ Upload Docker stats    
+      - name: Upload Docker Stats
+        uses: actions/upload-artifact@v4
+        with:
+            name: docker-stats
+            path: |
+              docker-stats-no-stream.txt
+              docker-stats.txt

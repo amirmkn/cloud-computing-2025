@@ -40,13 +40,13 @@ jobs:
       - name: Push Docker Image
         run: docker push ${{ secrets.DOCKER_USERNAME }}/llm-inference-image
       
-      # 7️⃣ Monitor container stats
-      - name: Monitor Docker container stats
-        run: |
-          docker stats llm-inference-container 
-        #--no-stream
-      
-      # 8️⃣ Run latency test
+      # 7️⃣ Run latency test script
       - name: Run latency test script
         run: |
           sh homeworks/one/latency_test.sh 127.0.0.1 5000
+      
+      # 8️⃣ Monitor Docker container stats
+      - name: Monitor Docker container stats
+        run: |
+          timeout 10s docker stats llm-inference-container >> docer-stats.txt
+        #--no-stream

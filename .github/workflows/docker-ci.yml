@@ -47,6 +47,12 @@ jobs:
       
       # 8️⃣ Monitor Docker container stats
       - name: Monitor Docker container stats
-        run: |
-          timeout 10s docker stats --format "{{.Container}},{{.CPUPerc}},{{.MemUsage}},{{.NetIO}}" >> docker-stats.txt
-        #--no-stream
+        run: |  
+          # Capture a single snapshot (one-time stats)
+          docker stats llm-inference-container --no-stream >> docker-stats-no-stream.txt
+          
+          # Start a 10-second tracking process
+          docker stats --format "{{.Container}},{{.CPUPerc}},{{.MemUsage}},{{.NetIO}}" >> docker-stats.txt &
+          STATS_PID=$!  # Capture the process ID
+          sleep 10  
+          kill $STATS_PID  # Stop the tracking process

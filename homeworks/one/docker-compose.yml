@@ -6,4 +6,4 @@ services:
     environment:
       METRICS_LOG_FILE : inside_compose_inference_metrics.csv # Set the `METRICS_LOG_FILE` value to be `inside_compose_inference_metrics.csv`
     volumes:
-      - ./compose_inference_metrics.csv:/app/inside_compose_inference_metrics.csv # Mount volume to get output in you host machine in a file named `compose_inference_metrics.csv`
+      - ./compose_inference_metrics.csv:./inside_compose_inference_metrics.csv # Mount volume to get output in you host machine in a file named `compose_inference_metrics.csv`

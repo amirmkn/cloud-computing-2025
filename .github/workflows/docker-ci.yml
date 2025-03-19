@@ -2,9 +2,10 @@ name: Docker CI Pipeline
 
 on:
   push:
-    branches:
-      - main  # Runs when code is pushed to main branch
-
+    paths:
+      - '.github/workflows/**/*.yml'
+      - '.github/workflows/**/*.yaml'
+      - 'Dockerfile'
 jobs:
   build-test-push:
     runs-on: ubuntu-latest
